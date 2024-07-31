@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerControler : MonoBehaviour
@@ -10,6 +11,9 @@ public class PlayerControler : MonoBehaviour
     public EnemyController enemy;
     public int damage = 3;
     public float blockTime = 0.2f;
+    public bool canTakeDamage = true;
+    public float simpleTimer = 0f;
+    public bool isEvading = false;
     void Start()
     {
         currentHealth = maxHealth;
@@ -18,30 +22,50 @@ public class PlayerControler : MonoBehaviour
 
     void Update()
     {
-        
+
     }
 
     void Atac()
     {
-        Debug.Log("3");
+        Debug.Log("Atac");
         enemy.TakeDamage(damage);
     }
-    void Block(bool _block)
+    public void Block(bool _block)
     {
-
-        Debug.Log("2");
+        if (_block == true)
+        {
+            Debug.Log("IsBlocing");
+            canTakeDamage = false;
+        }
+        else 
+        {
+            Debug.Log("IsNotBlocking");
+            canTakeDamage = true;
+        }
     }
     void Evade()
     {
-        Debug.Log("1");
+        if(simpleTimer <=0f)
+        {
+            simpleTimer -= Time.deltaTime;
+            canTakeDamage = false;
+        }
+        else 
+        {
+            canTakeDamage = true;
+            simpleTimer = 1;
+        }
+        Debug.Log("Evade");
 
     }
 
     public void TakeDamage(int damage)
     {
-
-        currentHealth -= damage;
-        healthBar.SetHealth(currentHealth);
+        if (canTakeDamage == true)
+        {
+            currentHealth -= damage;
+            healthBar.SetHealth(currentHealth);
+        }
         if (currentHealth <= 0)
             Die();
     }
