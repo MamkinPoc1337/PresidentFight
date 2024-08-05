@@ -9,6 +9,7 @@ public class PlayerControler : MonoBehaviour
     public EnemyController enemy;
     public StaminaBar staminaBar;
     public GameOverScreen gameOverScreen;
+    public Animator animator;
     public Timer timer;
     public int maxHealth = 100;
     public int maxStamina = 5;
@@ -50,7 +51,7 @@ public class PlayerControler : MonoBehaviour
         }
     }
 
-    void Atac()
+    public void Atac()
     {
         if (canAtac == true)
         {
@@ -77,7 +78,7 @@ public class PlayerControler : MonoBehaviour
         else
             canTakeDamage = true;
     }
-    void Evade()
+    public void Evade()
     {
         if(canEvade == true)
             Debug.Log("Evade");
