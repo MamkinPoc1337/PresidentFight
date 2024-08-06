@@ -81,10 +81,14 @@ public class PlayerControler : MonoBehaviour
         }
             
     }
-    public void Evade()
+    public void Evade(float isEvading)
     {
-        if(canEvade == true)
-            Debug.Log("Evade");
+        if(canEvade == true & isEvading == 1)
+        {
+            canTakeDamage = false;
+        }
+        else
+            canTakeDamage = true;
     }
 
     public void TakeDamage(int damage)
