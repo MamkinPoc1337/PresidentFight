@@ -12,23 +12,17 @@ public class PlayerControler : MonoBehaviour
     public GameOverScreen gameOverScreen;
     public Animator animator;
     public Timer timer;
-    public Button atacButton;
+    public Button attackButton;
     public Button evadeButton;
+    public Button blockButton;
     public int maxHealth = 100;
     public int maxStamina = 5;
     public int damage = 1;
     public int currentHealth;
     public int currentStamina;
-    public float blockTime = 0.2f;
     public float staminaRegenTime = 2f;
-    public float simpleTimer = 0f;
     public bool canTakeDamage = true;
-    public bool canAtac = true;
-    public bool canBloc = true;
-    public bool canEvade = true;
-    public bool isEvading = false;
-    public bool atacDeer = false;
-    public bool atacJump = false;
+    public bool isBlock = false;
     void Start()
     {
         currentHealth = maxHealth;
@@ -43,46 +37,24 @@ public class PlayerControler : MonoBehaviour
         healthBar.SetHealth(currentHealth);
         if (currentStamina <=0)
         {
-            atacButton.enabled = false;
-            canBloc = false;
+            attackButton.enabled = false;
+            blockButton.enabled = false;
             evadeButton.enabled = false;
         }
         if(currentStamina < maxStamina)
             StaminaBarLogic();
         if (timer.timeRemaning <= 0)
         {
-            atacButton.enabled = false;
-            canBloc = false;
+            attackButton.enabled = false;
+            blockButton.enabled = false;
             evadeButton.enabled = false;
         }
     }
 
     public void Atac()
     {
-        if (atacButton.enabled == true)
-        {
-            enemy.TakeDamage(damage);
-            currentStamina -=1;
-        }
-    }
-    public void Block(bool _block)
-    {
-        if(canBloc == true)
-        {
-            if (_block == true)
-            {
-                canTakeDamage = false;
-            }
-            else 
-            {
-                canTakeDamage = true;
-            }
-        }
-        else
-        {
-            canTakeDamage = true;
-        }
-            
+        enemy.TakeDamage(damage);
+        currentStamina -=1;
     }
     public void Evade(float isEvading)
     {
@@ -115,34 +87,24 @@ public class PlayerControler : MonoBehaviour
         {
             staminaRegenTime = 2f;
             currentStamina +=1;
+            attackButton.enabled = true;
+            evadeButton.enabled = true;
         }
     }
     public void IsDoingSomeOfAnimation(string animationName)
     {
-        if(animationName == "Atac")
+        if(animationName == "DoAnimation")
         {
-            canBloc = false;
+            blockButton.enabled = false;
             evadeButton.enabled = false;
-            atacButton.enabled = false;
-        }
-        else if(animationName == "Evade")
-        {
-            atacButton.enabled = false;
-            canBloc = false;
-            evadeButton.enabled = false;
-        }
-        else if (animationName == "Bloc")
-        {
-            atacButton.enabled = false;
-            evadeButton.enabled = false;
+            attackButton.enabled = false;
         }
         else
         {
-            atacButton.enabled = true;
-            canBloc = true;
+            attackButton.enabled = true;
+            blockButton.enabled = true;
             evadeButton.enabled = true;
-            atacDeer = false;
-            atacJump = false;
+            isBlock = false;
         }
     }
 

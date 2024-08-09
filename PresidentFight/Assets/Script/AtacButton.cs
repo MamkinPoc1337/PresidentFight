@@ -20,22 +20,24 @@ public class AtacButton : MonoBehaviour,IPointerDownHandler,IPointerUpHandler
     }
     public void OnPointerDown(PointerEventData eventData)
     {
-        atackTimer = 0.5f;
+        if(playerControler.attackButton.enabled == true)
+            atackTimer = 0.5f;
     }
     public void OnPointerUp(PointerEventData eventData)
     {
-        if(atackTimer >=0f)
-            HoldClick();
+        if(playerControler.attackButton.enabled == true)
+            if(atackTimer >=0f)
+                HoldClick();
     }
 
     public void SingleClick()
     {
-        if(playerControler.atacButton.enabled == true)
-            playerControler.animator.Play("Baiden_Atak_1");
+        if(playerControler.attackButton.enabled == true)
+            playerControler.animator.Play("Baidon_Attack_Deer");
     }
     public void HoldClick()
     {
-        playerControler.animator.Play("Baidon_atak_2");
+        playerControler.animator.Play("Baiden_Attack_Jump");
     }
 
 }

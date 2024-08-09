@@ -7,7 +7,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Baiden_Blok_end
+  m_Name: Baiden_Block_End
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -78,7 +78,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Baidon_atak_2
+  m_Name: Baidon_Attack_Deer
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -213,7 +213,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Baiden_Blok_Stay
+  m_Name: Baiden_Block_Stay
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -261,7 +261,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Baiden_evade
+  m_Name: Baiden_Evade
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -288,7 +288,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Baiden_Atak_1
+  m_Name: Baiden_Attack_Jump
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -363,7 +363,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Baiden_Blok
+  m_Name: Baiden_Block
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:

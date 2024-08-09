@@ -6,22 +6,23 @@ using UnityEngine.EventSystems;
 public class BlockButton : MonoBehaviour,IPointerDownHandler,IPointerUpHandler
 {
     public PlayerControler playerControler;
-    public bool buttonPressed;
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        if(playerControler.canBloc == true)
+        if(playerControler.blockButton.enabled == true)
         {
-            playerControler.animator.Play("Baiden_Blok");
-            buttonPressed = true;
-            Debug.Log("1");
+            playerControler.animator.Play("Baiden_Block");
+            playerControler.canTakeDamage = false;
+            playerControler.isBlock = true;
         }
 
     }
     public void OnPointerUp(PointerEventData eventData)
     {
-        playerControler.animator.Play("Baiden_Blok_end");
-        buttonPressed = false;
-        Debug.Log("2");
+        if(playerControler.isBlock == true)
+        {
+            playerControler.animator.Play("Baiden_Block_End");
+            playerControler.canTakeDamage = true;
+        }
     }
 }
