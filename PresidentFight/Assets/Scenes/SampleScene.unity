@@ -562,6 +562,18 @@ MonoBehaviour:
           m_StringArgument: Baiden_evade
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1744063516}
+        m_TargetAssemblyTypeName: PlayerControler, Assembly-CSharp
+        m_MethodName: IsDoingSomeOfAnimation
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Evade
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &118664646
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -976,7 +988,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -4748112919641308107, guid: 5b7e41cb9442e00438dbcda4afc7d277, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.41214782
+      value: 0.39994302
       objectReference: {fileID: 0}
     - target: {fileID: -4748112919641308107, guid: 5b7e41cb9442e00438dbcda4afc7d277, type: 3}
       propertyPath: m_LocalRotation.x
@@ -988,7 +1000,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -4748112919641308107, guid: 5b7e41cb9442e00438dbcda4afc7d277, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.91111696
+      value: -0.91653997
       objectReference: {fileID: 0}
     - target: {fileID: -4748112919641308107, guid: 5b7e41cb9442e00438dbcda4afc7d277, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -1116,7 +1128,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5094520610203605660, guid: 5b7e41cb9442e00438dbcda4afc7d277, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.45979232
+      value: 0.67049223
       objectReference: {fileID: 0}
     - target: {fileID: 5094520610203605660, guid: 5b7e41cb9442e00438dbcda4afc7d277, type: 3}
       propertyPath: m_LocalRotation.x
@@ -1128,7 +1140,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5094520610203605660, guid: 5b7e41cb9442e00438dbcda4afc7d277, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.88802654
+      value: 0.74191654
       objectReference: {fileID: 0}
     - target: {fileID: 5094520610203605660, guid: 5b7e41cb9442e00438dbcda4afc7d277, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -1152,7 +1164,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8380609942603197825, guid: 5b7e41cb9442e00438dbcda4afc7d277, type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.9345695
+      value: -0.9956523
       objectReference: {fileID: 0}
     - target: {fileID: 8380609942603197825, guid: 5b7e41cb9442e00438dbcda4afc7d277, type: 3}
       propertyPath: m_LocalRotation.x
@@ -1164,11 +1176,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8380609942603197825, guid: 5b7e41cb9442e00438dbcda4afc7d277, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.3557807
+      value: 0.093147784
       objectReference: {fileID: 0}
     - target: {fileID: 8380609942603197825, guid: 5b7e41cb9442e00438dbcda4afc7d277, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: -9.218
+      value: -41.514
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1571,7 +1583,7 @@ MonoBehaviour:
   staminaBar: {fileID: 711261104}
   gameOverScreen: {fileID: 1512750951}
   timer: {fileID: 3644913}
-  maxHealth: 10
+  maxHealth: 100
   currentHealth: 0
   maxStamina: 5
   currentStamina: 0
@@ -1595,6 +1607,7 @@ GameObject:
   - component: {fileID: 600883516}
   - component: {fileID: 600883515}
   - component: {fileID: 600883514}
+  - component: {fileID: 600883517}
   m_Layer: 5
   m_Name: ButtonAtack
   m_TagString: Untagged
@@ -1664,19 +1677,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 600883515}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1744063514}
-        m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
-        m_MethodName: Play
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: Baidon_atak_2
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &600883515
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1715,6 +1716,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 600883512}
   m_CullTransparentMesh: 1
+--- !u!114 &600883517
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 600883512}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02509eb5232d247409f3af550d9ac1bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerControler: {fileID: 1744063516}
+  atackTimer: 0
 --- !u!1 &635996187 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -4856929727433981899, guid: 019441716db2d33458ba100a30b1db0f, type: 3}
@@ -1883,6 +1898,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slider: {fileID: 711261105}
+  image: {fileID: 265001851}
 --- !u!114 &711261105
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2151,6 +2167,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slider: {fileID: 973368758}
+  image: {fileID: 1774662563}
 --- !u!114 &973368758
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2970,6 +2987,8 @@ MonoBehaviour:
   gameOverScreen: {fileID: 1512750951}
   animator: {fileID: 1744063514}
   timer: {fileID: 3644913}
+  atacButton: {fileID: 600883514}
+  evadeButton: {fileID: 118664645}
   maxHealth: 100
   maxStamina: 5
   damage: 1
@@ -2983,6 +3002,8 @@ MonoBehaviour:
   canBloc: 1
   canEvade: 1
   isEvading: 0
+  atacDeer: 0
+  atacJump: 0
 --- !u!1 &1759442365
 GameObject:
   m_ObjectHideFlags: 0
@@ -4198,7 +4219,7 @@ Transform:
   m_GameObject: {fileID: 1992017959}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0, z: 0.3310177, w: 0.94362456}
-  m_LocalPosition: {x: -0.83343714, y: 7.7250013, z: 0}
+  m_LocalPosition: {x: -0.30494183, y: 7.437975, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4222,6 +4243,7 @@ GameObject:
   - component: {fileID: 2055179032}
   - component: {fileID: 2055179031}
   - component: {fileID: 2055179034}
+  - component: {fileID: 2055179035}
   m_Layer: 5
   m_Name: ButtonBlock
   m_TagString: Untagged
@@ -4291,7 +4313,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2055179032}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1744063516}
+        m_TargetAssemblyTypeName: PlayerControler, Assembly-CSharp
+        m_MethodName: IsDoingSomeOfAnimation
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Block
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2055179032
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4359,18 +4393,6 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 1
           m_CallState: 2
-        - m_Target: {fileID: 1744063514}
-          m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
-          m_MethodName: Play
-          m_Mode: 5
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: Baiden_Blok
-            m_BoolArgument: 1
-          m_CallState: 2
   - eventID: 3
     callback:
       m_PersistentCalls:
@@ -4387,18 +4409,20 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-        - m_Target: {fileID: 1744063514}
-          m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
-          m_MethodName: Play
-          m_Mode: 5
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: Baiden_Blok_end
-            m_BoolArgument: 0
-          m_CallState: 2
+--- !u!114 &2055179035
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2055179029}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e73ecba567fa004f8fc4e9faec586ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerControler: {fileID: 1744063516}
+  buttonPressed: 0
 --- !u!1 &2095188875
 GameObject:
   m_ObjectHideFlags: 0

@@ -2856,8 +2856,22 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 0
+    functionName: IsDoingSomeOfAnimation
+    data: Atac
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.71666664
     functionName: Atac
     data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 1.6666666
+    functionName: IsDoingSomeOfAnimation
+    data: None
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0

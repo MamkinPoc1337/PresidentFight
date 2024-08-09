@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerControler : MonoBehaviour
 {
@@ -11,6 +12,8 @@ public class PlayerControler : MonoBehaviour
     public GameOverScreen gameOverScreen;
     public Animator animator;
     public Timer timer;
+    public Button atacButton;
+    public Button evadeButton;
     public int maxHealth = 100;
     public int maxStamina = 5;
     public int damage = 1;
@@ -24,6 +27,8 @@ public class PlayerControler : MonoBehaviour
     public bool canBloc = true;
     public bool canEvade = true;
     public bool isEvading = false;
+    public bool atacDeer = false;
+    public bool atacJump = false;
     void Start()
     {
         currentHealth = maxHealth;
@@ -38,24 +43,24 @@ public class PlayerControler : MonoBehaviour
         healthBar.SetHealth(currentHealth);
         if (currentStamina <=0)
         {
-            canAtac = false;
+            atacButton.enabled = false;
             canBloc = false;
+            evadeButton.enabled = false;
         }
         if(currentStamina < maxStamina)
             StaminaBarLogic();
         if (timer.timeRemaning <= 0)
         {
-            canAtac = false;
+            atacButton.enabled = false;
             canBloc = false;
-            canEvade = false;
+            evadeButton.enabled = false;
         }
     }
 
     public void Atac()
     {
-        if (canAtac == true)
+        if (atacButton.enabled == true)
         {
-            Debug.Log("Atac");
             enemy.TakeDamage(damage);
             currentStamina -=1;
         }
@@ -66,12 +71,10 @@ public class PlayerControler : MonoBehaviour
         {
             if (_block == true)
             {
-                Debug.Log("IsBlocing");
                 canTakeDamage = false;
             }
             else 
             {
-                Debug.Log("IsNotBlocking");
                 canTakeDamage = true;
             }
         }
@@ -83,7 +86,7 @@ public class PlayerControler : MonoBehaviour
     }
     public void Evade(float isEvading)
     {
-        if(canEvade == true & isEvading == 1)
+        if(evadeButton.enabled == true & isEvading == 1)
         {
             canTakeDamage = false;
         }
@@ -112,8 +115,34 @@ public class PlayerControler : MonoBehaviour
         {
             staminaRegenTime = 2f;
             currentStamina +=1;
-            canAtac = true;
+        }
+    }
+    public void IsDoingSomeOfAnimation(string animationName)
+    {
+        if(animationName == "Atac")
+        {
+            canBloc = false;
+            evadeButton.enabled = false;
+            atacButton.enabled = false;
+        }
+        else if(animationName == "Evade")
+        {
+            atacButton.enabled = false;
+            canBloc = false;
+            evadeButton.enabled = false;
+        }
+        else if (animationName == "Bloc")
+        {
+            atacButton.enabled = false;
+            evadeButton.enabled = false;
+        }
+        else
+        {
+            atacButton.enabled = true;
             canBloc = true;
+            evadeButton.enabled = true;
+            atacDeer = false;
+            atacJump = false;
         }
     }
 
