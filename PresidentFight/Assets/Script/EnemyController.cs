@@ -8,6 +8,7 @@ public class EnemyController : MonoBehaviour
     public HealthBar healthBar;
     public StaminaBar staminaBar;
     public GameOverScreen gameOverScreen;
+    public Animator animator;
     public Timer timer;
     public int maxHealth = 10;
     public int currentHealth;
@@ -43,7 +44,7 @@ public class EnemyController : MonoBehaviour
         if(currentStamina < maxStamina)
             StaminaBarLogic();
         if(atackTimer <=0)
-            atackTimer =1f;
+            atackTimer =4f;
         if (atackTimer > 0f)
         {
             atackTimer -=Time.deltaTime;
@@ -75,6 +76,7 @@ public class EnemyController : MonoBehaviour
         {
             playerControler.TakeDamage(damage);
             currentStamina -=1;
+            animator.Play("Trump_Atak_Clik");
             if (currentStamina <=0)
                 canAtac = false;
         }
