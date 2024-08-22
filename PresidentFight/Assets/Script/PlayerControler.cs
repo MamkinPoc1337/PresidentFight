@@ -15,42 +15,41 @@ public class PlayerControler : MonoBehaviour
     public Button attackButton;
     public Button evadeButton;
     public Button blockButton;
+
     public int maxHealth = 100;
     public int maxStamina = 5;
     public int damage = 1;
+
     public int currentHealth;
     public int currentStamina;
+
     public float staminaRegenTime = 2f;
+    private float staminaRegenTimer;
     public bool canTakeDamage = true;
-    public bool isBlock = false;
+    public bool isBlocking  = false;
     void Start()
     {
         currentHealth = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
         currentStamina = maxStamina;
         staminaBar.SetMaxStamina(maxStamina);
+        staminaRegenTimer = staminaRegenTime;
     }
 
     void Update()
     {
         staminaBar.SetStamina(currentStamina);
         healthBar.SetHealth(currentHealth);
-        if (currentStamina <=0)
-        {
-            attackButton.enabled = false;
-            blockButton.enabled = false;
-            evadeButton.enabled = false;
-        }
-        if(currentStamina < maxStamina)
-            StaminaBarLogic();
+
+        HandleStamina();
+        UpdateButtonStates();
+
         if (timer.timeRemaning <= 0)
         {
-            attackButton.enabled = false;
-            blockButton.enabled = false;
-            evadeButton.enabled = false;
+            DisableAllActions();
         }
 
-        UpdateAnimClipTimes();
+        //UpdateAnimClipTimes();
     }
 
     public void Atac()
@@ -60,53 +59,60 @@ public class PlayerControler : MonoBehaviour
     }
     public void Evade(float isEvading)
     {
-        if(evadeButton.enabled == true & isEvading == 1)
-        {
+        if(evadeButton.enabled && isEvading == 1)
             canTakeDamage = false;
-        }
         else
             canTakeDamage = true;
     }
 
     public void TakeDamage(int damage)
     {
-        if (canTakeDamage == true)
-        {
+        if (canTakeDamage)
             currentHealth -= damage;
-        }
         else
-            currentStamina -=1;
+            currentStamina --;
         if (currentHealth <= 0)
             Die();
     }
-    public void StaminaBarLogic()
+    void HandleStamina()
     {
-        if(staminaRegenTime >0f)
+        if (currentStamina < maxStamina)
         {
-            staminaRegenTime -= Time.deltaTime;
-        }
-        else
-        {
-            staminaRegenTime = 2f;
-            currentStamina +=1;
-            attackButton.enabled = true;
-            evadeButton.enabled = true;
+            if (staminaRegenTimer > 0f)
+            {
+                staminaRegenTimer -= Time.deltaTime;
+            }
+            else
+            {
+                currentStamina++;
+                staminaRegenTimer = staminaRegenTime;
+            }
         }
     }
+
+    void UpdateButtonStates()
+    {
+        bool hasStamina = currentStamina > 0;
+        attackButton.enabled = hasStamina;
+        evadeButton.enabled = hasStamina;
+        blockButton.enabled = hasStamina && !isBlocking;
+    }
+
+    void DisableAllActions()
+    {
+        attackButton.enabled = false;
+        evadeButton.enabled = false;
+        blockButton.enabled = false;
+    }
+
     public void IsDoingSomeOfAnimation(string animationName)
     {
         if(animationName == "DoAnimation")
-        {
-            blockButton.enabled = false;
-            evadeButton.enabled = false;
-            attackButton.enabled = false;
-        }
+            DisableAllActions();
         else
         {
-            attackButton.enabled = true;
-            blockButton.enabled = true;
-            evadeButton.enabled = true;
-            isBlock = false;
+            UpdateButtonStates();
+            isBlocking  = false;
         }
     }
 
@@ -116,17 +122,13 @@ public class PlayerControler : MonoBehaviour
         Destroy(gameObject);
     }
 
-    public void UpdateAnimClipTimes()
-    {
-        AnimatorClipInfo[ ] animationClip = animator.GetCurrentAnimatorClipInfo(0);
-        int currentFrame = (int) (animationClip[0].weight * (animationClip [0].clip.length * animationClip[0].clip.frameRate));
-        // Debug.Log("Weigth "+animationClip[0].weight);
-        // Debug.Log("Leight "+animationClip [0].clip.length);
-        // Debug.Log("frameRate "+animationClip[0].clip.frameRate);
-        Debug.Log("CurrentFrame "+currentFrame);
-    }
-
-
-
-
+    // public void UpdateAnimClipTimes()
+    // {
+    //     AnimatorClipInfo[ ] animationClip = animator.GetCurrentAnimatorClipInfo(0);
+    //     if(animationClip.Length > 0)
+    //     {
+    //         int currentFrame = (int) (animationClip[0].weight * (animationClip [0].clip.length * animationClip[0].clip.frameRate));
+    //         Debug.Log("CurrentFrame " + currentFrame);
+    //     }
+    // }
 }

@@ -10,18 +10,25 @@ public class EnemyController : MonoBehaviour
     public GameOverScreen gameOverScreen;
     public Animator animator;
     public Timer timer;
+
     public int maxHealth = 10;
     public int currentHealth;
     public int maxStamina = 5;
     public int currentStamina;
     public int damage = 1;
-    public float atackTimer = 0f;
-    public float staminaRegenTime = 2f;
+
+    public float atackCooldown = 4f;
+    private float atackTimer;
+    public float staminaRegenCooldown = 2f;
+    private float staminaRegenTimer;
+
     public float blockChance = 30f;
     public float evadeChance = 20f;
-    public bool canAtac = true;
-    public bool canBloc = true;
-    public bool canEvade = true;
+
+    private bool canAtack = true;
+    private bool canBlock = true;
+    private bool canEvade = true;
+
 
     void Start()
     {
@@ -29,97 +36,123 @@ public class EnemyController : MonoBehaviour
         healthBar.SetMaxHealth(maxHealth);
         currentStamina = maxStamina;
         staminaBar.SetMaxStamina(maxStamina);
+        atackTimer = atackCooldown;
+        staminaRegenTimer = staminaRegenCooldown;
     }
 
     void Update()
     {
         healthBar.SetHealth(currentHealth);
         staminaBar.SetStamina(currentStamina);
-        if (currentStamina <=0)
+
+        HandleAtackCooldown();
+        HandleStaminaRegen();
+        HandleCombatAvailability();
+
+        if (timer.timeRemaning <= 0)
         {
-            canAtac = false;
-            canBloc = false;
-            canEvade = false;
-        }
-        if(currentStamina < maxStamina)
-            StaminaBarLogic();
-        if(atackTimer <=0)
-            atackTimer =4f;
-        if (atackTimer > 0f)
-        {
-            atackTimer -=Time.deltaTime;
-            if (atackTimer <= 0f)
-                Atac();
-        }
-        if(timer.timeRemaning <= 0)
-        {
-            canAtac = false;
-            canBloc = false;
-            canEvade =false;
+            DisableCombat();
         }
     }
 
     public void TakeDamage(int damage)
     {
-        if(Random.Range(0,100) <= 50)
-            Evade(damage);
-        else 
-            Block(damage);
-        currentHealth -= damage;
-        if (currentHealth <= 0)
-            Die();
-    }
-
-    void Atac()
-    {
-        if (canAtac == true)
+        if (canEvade && Random.Range(0, 100) <= evadeChance)
         {
-            playerControler.TakeDamage(damage);
-            currentStamina -=1;
-            animator.Play("Trump_Atak_Clik");
-            if (currentStamina <=0)
-                canAtac = false;
+            Evade();
         }
-
-    }
-    void Evade(int damage)
-    {
-        if(canEvade == true)
+        else if (canBlock && Random.Range(0, 100) <= blockChance)
         {
-            if (Random.Range(0,100) < evadeChance)
-            {
-                currentHealth += damage;
-                Debug.Log("EnemyEvade");
-            }
-        }
-    }
-
-    void Block(int damage)
-    {
-        if(canBloc == true)
-        {
-            if (Random.Range(0,100) < blockChance)
-            {
-                currentHealth += damage;
-                Debug.Log("EnemyBlock");
-            }
-        }
-    }
-    public void StaminaBarLogic()
-    {
-        if(staminaRegenTime >0f)
-        {
-            staminaRegenTime -= Time.deltaTime;
+            Block();
         }
         else
         {
-            staminaRegenTime = 2f;
-            currentStamina +=1;
-            canAtac = true;
-            canBloc = true;
-            canEvade = true;
+            currentHealth -= damage;
+        }
+
+        if (currentHealth <= 0)
+        {
+            Die();
         }
     }
+
+    private void HandleAtackCooldown()
+    {
+        if (atackTimer > 0)
+        {
+            atackTimer -= Time.deltaTime;
+            if (atackTimer <= 0)
+            {
+                Atac();
+                atackTimer = atackCooldown;
+            }
+        }
+    }
+    private void Atac()
+    {
+        if (canAtack)
+        {
+            playerControler.TakeDamage(damage);
+            currentStamina -= 1;
+            animator.Play("Trump_Atak_Clik");
+
+            if (currentStamina <= 0)
+            {
+                DisableCombat();
+            }
+        }
+
+    }
+
+    private void HandleStaminaRegen()
+    {
+        if (currentStamina < maxStamina)
+        {
+            if (staminaRegenTimer > 0f)
+            {
+                staminaRegenTimer -= Time.deltaTime;
+            }
+            else
+            {
+                currentStamina += 1;
+                staminaRegenTimer = staminaRegenCooldown;
+
+                if (currentStamina > 0)
+                {
+                    EnableCombat();
+                }
+            }
+        }
+    }
+    private void Evade()
+    {
+
+    }
+
+    private void Block()
+    {
+
+    }
+    private void HandleCombatAvailability()
+    {
+        canAtack = currentStamina > 0;
+        canBlock = currentStamina > 0;
+        canEvade = currentStamina > 0;
+    }
+    private void DisableCombat()
+    {
+        canAtack = false;
+        canBlock = false;
+        canEvade = false;
+    }
+
+    private void EnableCombat()
+    {
+        canAtack = true;
+        canBlock = true;
+        canEvade = true;
+    }
+
 
     void Die()
     {
