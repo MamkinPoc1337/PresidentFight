@@ -11,7 +11,7 @@ public class BlockButton : MonoBehaviour,IPointerDownHandler,IPointerUpHandler
     {
         if(playerControler.blockButton.enabled == true)
         {
-            playerControler.animator.Play("Baiden_Block");
+            // playerControler.animator.Play("Baiden_Block");
             playerControler.canTakeDamage = false;
             playerControler.isBlock = true;
         }
