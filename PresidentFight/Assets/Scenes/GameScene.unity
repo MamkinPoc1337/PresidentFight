@@ -2900,7 +2900,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthBar: {fileID: 1706230692}
-  enemy: {fileID: 590906679}
+  enemyController: {fileID: 590906679}
   staminaBar: {fileID: 973368757}
   gameOverScreen: {fileID: 1512750951}
   animator: {fileID: 1744063514}

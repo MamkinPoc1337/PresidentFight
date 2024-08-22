@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class PlayerControler : MonoBehaviour
 {
     public HealthBar healthBar;
-    public EnemyController enemy;
+    public EnemyController enemyController;
     public StaminaBar staminaBar;
     public GameOverScreen gameOverScreen;
     public Animator animator;
@@ -49,11 +49,13 @@ public class PlayerControler : MonoBehaviour
             blockButton.enabled = false;
             evadeButton.enabled = false;
         }
+
+        UpdateAnimClipTimes();
     }
 
     public void Atac()
     {
-        enemy.TakeDamage(damage);
+        enemyController.TakeDamage(damage);
         currentStamina -=1;
     }
     public void Evade(float isEvading)
@@ -113,4 +115,18 @@ public class PlayerControler : MonoBehaviour
         gameOverScreen.Setup("Enemy");
         Destroy(gameObject);
     }
+
+    public void UpdateAnimClipTimes()
+    {
+        AnimatorClipInfo[ ] animationClip = animator.GetCurrentAnimatorClipInfo(0);
+        int currentFrame = (int) (animationClip[0].weight * (animationClip [0].clip.length * animationClip[0].clip.frameRate));
+        // Debug.Log("Weigth "+animationClip[0].weight);
+        // Debug.Log("Leight "+animationClip [0].clip.length);
+        // Debug.Log("frameRate "+animationClip[0].clip.frameRate);
+        Debug.Log("CurrentFrame "+currentFrame);
+    }
+
+
+
+
 }
