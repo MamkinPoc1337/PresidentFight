@@ -1,56 +1,75 @@
 using System.Collections;
 using System.Collections.Generic;
-using JetBrains.Annotations;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class AtacButton : MonoBehaviour,IPointerDownHandler,IPointerUpHandler
 {
     public PlayerControler playerControler;
-    public float atackTimer = 0f;
-    public float clilCount = 0f;
-    public void Update()
+    private  float atackTimer = 0f;
+    private  int clickCount = 0;
+    void Update()
     {
         if (atackTimer > 0f)
         {
             atackTimer -=Time.deltaTime;
-            if (atackTimer <= 0f)
+
+            if (atackTimer <= 0f && clickCount == 1)
                 SingleClick();
-            else if(clilCount == 2 & atackTimer >=0)
+            else if(clickCount >= 2)
+            {
                 DoubleClick();
+                atackTimer = 0f;
+            }
         }
     }
     public void OnPointerDown(PointerEventData eventData)
     {
-        if(playerControler.attackButton.enabled == true)
-            atackTimer = 0.5f;
-        clilCount +=1;
+        if (playerControler.attackButton.enabled)
+        {
+            clickCount++;
+            if (clickCount == 1)
+            {
+                atackTimer = 0.5f;
+            }
+        }
     }
     public void OnPointerUp(PointerEventData eventData)
     {
-        if(playerControler.attackButton.enabled == true)
-            if(atackTimer >0f)
-                HoldClick();
+        if(playerControler.attackButton.enabled && clickCount == 1 && atackTimer > 0f)
+        {
+            HoldClick();
+            atackTimer = 0f;
+        }
     }
 
     public void SingleClick()
     {
-        if(playerControler.attackButton.enabled == true)
+        if(playerControler.attackButton.enabled)
         {
             playerControler.animator.Play("Baidon_Attack_Deer");
-            clilCount = 0;
+            ResetClickCount();
         }
     }
     public void HoldClick()
     {
-        playerControler.animator.Play("Baiden_Attack_Jump");
-        clilCount = 0;
+        if (playerControler.attackButton.enabled)
+        {
+            playerControler.animator.Play("Baiden_Attack_Jump");
+            ResetClickCount();
+        }
     }
-    public void DoubleClick()
+    private void DoubleClick()
     {
-        Debug.Log("DoubleClick");
-        clilCount = 0;
+        if (playerControler.attackButton.enabled)
+        {
+            //playerControler.animator.Play("Baiden_Attack_Double");
+            ResetClickCount();
+        }
     }
 
+    private void ResetClickCount()
+    {
+        clickCount = 0;
+    }
 }

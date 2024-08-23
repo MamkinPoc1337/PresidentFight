@@ -426,7 +426,7 @@ Canvas:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 67454031}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 0
   m_Camera: {fileID: 0}
@@ -1589,13 +1589,10 @@ MonoBehaviour:
   maxStamina: 5
   currentStamina: 0
   damage: 1
-  atackTimer: 0
-  staminaRegenTime: 2
+  atackCooldown: 4
+  staminaRegenCooldown: 2
   blockChance: 50
   evadeChance: 20
-  canAtac: 1
-  canBloc: 1
-  canEvade: 1
 --- !u!1 &600883512
 GameObject:
   m_ObjectHideFlags: 0
@@ -1730,8 +1727,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerControler: {fileID: 1744063516}
-  atackTimer: 0
-  clilCount: 0
 --- !u!1 &635996187 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -4856929727433981899, guid: 019441716db2d33458ba100a30b1db0f, type: 3}
@@ -2915,7 +2910,7 @@ MonoBehaviour:
   currentStamina: 0
   staminaRegenTime: 2
   canTakeDamage: 1
-  isBlock: 0
+  isBlocking: 0
 --- !u!1 &1759442365
 GameObject:
   m_ObjectHideFlags: 0

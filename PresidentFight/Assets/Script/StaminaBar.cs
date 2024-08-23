@@ -18,8 +18,4 @@ public class StaminaBar : MonoBehaviour
     {
         slider.value = stamina;
     }
-    public void ButtonsIsNotAllowed()
-    {
-        
-    }
 }

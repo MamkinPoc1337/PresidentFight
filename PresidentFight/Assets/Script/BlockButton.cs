@@ -9,20 +9,21 @@ public class BlockButton : MonoBehaviour,IPointerDownHandler,IPointerUpHandler
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        if(playerControler.blockButton.enabled == true)
+        if(playerControler.blockButton.enabled)
         {
-            // playerControler.animator.Play("Baiden_Block");
+            playerControler.animator.Play("Baiden_Block");
             playerControler.canTakeDamage = false;
-            playerControler.isBlock = true;
+            playerControler.isBlocking  = true;
         }
 
     }
     public void OnPointerUp(PointerEventData eventData)
     {
-        if(playerControler.isBlock == true)
+        if(playerControler.isBlocking)
         {
             playerControler.animator.Play("Baiden_Block_End");
             playerControler.canTakeDamage = true;
+            playerControler.isBlocking = false;
         }
     }
 }
