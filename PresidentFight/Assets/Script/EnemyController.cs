@@ -25,7 +25,7 @@ public class EnemyController : MonoBehaviour
     public float blockChance = 30f;
     public float evadeChance = 20f;
 
-    private bool canAtack = true;
+    public bool canAtack = true;
     private bool canBlock = true;
     private bool canEvade = true;
 
@@ -78,13 +78,14 @@ public class EnemyController : MonoBehaviour
 
     private void HandleAtackCooldown()
     {
-        if (atackTimer > 0)
+        if (atackTimer > 0 && animator.GetBool("attackIsDone"))
         {
             atackTimer -= Time.deltaTime;
             if (atackTimer <= 0)
             {
                 Atac();
                 atackTimer = atackCooldown;
+                animator.SetBool("attackIsDone", false);
             }
         }
     }
@@ -92,16 +93,26 @@ public class EnemyController : MonoBehaviour
     {
         if (canAtack)
         {
-            playerControler.TakeDamage(damage);
-            currentStamina -= 1;
-            animator.Play("Trump_Atak_Clik");
-
-            if (currentStamina <= 0)
+            int choseAtac = Random.Range(0,3);
+            switch(choseAtac)
             {
-                DisableCombat();
+                case 0:
+                    animator.Play("Trump_Atak_Clik");
+                    break;
+                case 1:
+                    animator.Play("Tramp_Atak_2Clik");
+                    break;
+                case 2:
+                    animator.Play("Trump_Atak_hold");
+                    break;
             }
         }
 
+    }
+    public void PlayerTakeDamage()
+    {
+            playerControler.TakeDamage(damage);
+            currentStamina --;
     }
 
     private void HandleStaminaRegen()
@@ -114,7 +125,7 @@ public class EnemyController : MonoBehaviour
             }
             else
             {
-                currentStamina += 1;
+                currentStamina ++;
                 staminaRegenTimer = staminaRegenCooldown;
 
                 if (currentStamina > 0)
@@ -126,12 +137,13 @@ public class EnemyController : MonoBehaviour
     }
     private void Evade()
     {
-
+        animator.Play("Trump_Evade");
+        currentStamina --;
     }
 
     private void Block()
     {
-
+        animator.Play("Trump_Blok_Start");
     }
     private void HandleCombatAvailability()
     {
@@ -151,6 +163,14 @@ public class EnemyController : MonoBehaviour
         canAtack = true;
         canBlock = true;
         canEvade = true;
+    }
+
+    private void AnimatorEvents(string eventName)
+    {
+        if(eventName == "AtackEnd")
+        {
+            animator.SetBool("attackIsDone", true);
+        }
     }
 
 
