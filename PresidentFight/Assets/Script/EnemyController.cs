@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemyController : MonoBehaviour
 {
     public PlayerControler playerControler;
+    public AtacButton atacButton;
     public HealthBar healthBar;
     public StaminaBar staminaBar;
     public GameOverScreen gameOverScreen;
@@ -24,10 +25,13 @@ public class EnemyController : MonoBehaviour
 
     public float blockChance = 30f;
     public float evadeChance = 20f;
+    private float blockDuration;
 
     public bool canAtack = true;
     private bool canBlock = true;
     private bool canEvade = true;
+    private bool isBlocking = false;
+    private bool canTakeDamage = true;
 
 
     void Start()
@@ -48,6 +52,7 @@ public class EnemyController : MonoBehaviour
         HandleAtackCooldown();
         HandleStaminaRegen();
         HandleCombatAvailability();
+        HandleBlockDuration();
 
         if (timer.timeRemaning <= 0)
         {
@@ -61,13 +66,10 @@ public class EnemyController : MonoBehaviour
         {
             Evade();
         }
-        else if (canBlock && Random.Range(0, 100) <= blockChance)
-        {
-            Block();
-        }
-        else
+        else if (canTakeDamage == true)
         {
             currentHealth -= damage;
+            animator.SetTrigger("takeDamage");
         }
 
         if (currentHealth <= 0)
@@ -78,16 +80,25 @@ public class EnemyController : MonoBehaviour
 
     private void HandleAtackCooldown()
     {
-        if (atackTimer > 0 && animator.GetBool("attackIsDone"))
+        if (atackTimer > 0)
         {
             atackTimer -= Time.deltaTime;
             if (atackTimer <= 0)
             {
-                Atac();
+                ChoseWhatToDo();
                 atackTimer = atackCooldown;
                 animator.SetBool("attackIsDone", false);
             }
         }
+    }
+
+    private void ChoseWhatToDo()
+    {
+        int blockOrAttack = Random.Range(0,2);
+        if(blockOrAttack == 0)
+            Block();
+        else    
+            Atac();
     }
     private void Atac()
     {
@@ -141,9 +152,36 @@ public class EnemyController : MonoBehaviour
         currentStamina --;
     }
 
+    private void HandleBlockDuration()
+    {
+        if(isBlocking)
+        {
+            if (blockDuration > 0f)
+            {
+                blockDuration -= Time.deltaTime;
+                if(atacButton.isAttacHold)
+                {
+                    canTakeDamage = true;
+                }
+                else
+                {
+                    canTakeDamage = false;
+                }
+            }
+            else
+            {
+                animator.SetTrigger("animationIsDone");
+                isBlocking = false;
+                canTakeDamage = true;
+            }
+        }
+    }
+
     private void Block()
     {
         animator.Play("Trump_Blok_Start");
+        isBlocking = true;
+        blockDuration = Random.Range(1,4);
     }
     private void HandleCombatAvailability()
     {
@@ -169,10 +207,9 @@ public class EnemyController : MonoBehaviour
     {
         if(eventName == "AtackEnd")
         {
-            animator.SetBool("attackIsDone", true);
+            animator.SetTrigger("animationIsDone");
         }
     }
-
 
     void Die()
     {

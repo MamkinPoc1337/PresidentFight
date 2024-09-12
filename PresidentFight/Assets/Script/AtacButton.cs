@@ -8,37 +8,46 @@ using UnityEngine.EventSystems;
 public class AtacButton : MonoBehaviour,IPointerDownHandler,IPointerUpHandler
 {
     public PlayerControler playerControler;
+    public UnityEngine.Events.UnityEvent onSingleClick;
+    public UnityEngine.Events.UnityEvent onDoubleClick;
+    public UnityEngine.Events.UnityEvent onHoldClick;
+
     private float doubleClickThreshold = 0.5f; // Время для определения двойного клика
-    private float holdThreshold = 0.75f; // Время для определения удержания
-    private int clickCount = 0;
+    private float holdThreshold = 0.25f; // Время для определения удержания
+    private float lastClickTime = 0f;
     private bool isHeld = false;
+    private bool isClickedOnce = false;
+    private bool holdTriggered = false; 
+    public bool isAttacClick = false;
+    public bool isAttackDoubleClick = false;
+    public bool isAttacHold = false;
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        if (playerControler.attackButton.enabled)
+        if (playerControler != null && playerControler.attackButton.enabled)
         {
-            clickCount++;
 
-            if (clickCount == 1)
+            if (!isClickedOnce)
             {
-                // Если это первый клик, устанавливаем таймеры для одиночного клика и удержания
+                isClickedOnce = true;
+                lastClickTime = Time.time;
                 Invoke("SingleClick", doubleClickThreshold);
                 Invoke("HoldClick", holdThreshold);
             }
-            else if (clickCount == 2)
+            else if (Time.time - lastClickTime < doubleClickThreshold)
             {
                 // Если второй клик произошел до истечения таймера, отменяем одиночный клик и удержание
                 CancelInvoke("SingleClick");
                 CancelInvoke("HoldClick");
                 OnDoubleClick();
-                ResetClickCount();
+                ResetClickState();
             }
         }
     }
 
     public void OnPointerUp(PointerEventData eventData)
     {
-        if (playerControler.attackButton.enabled)
+        if (playerControler != null && playerControler.attackButton.enabled)
         {
             // Если кнопку отпустили и она была удержана, ничего не делаем
             if (isHeld)
@@ -47,43 +56,47 @@ public class AtacButton : MonoBehaviour,IPointerDownHandler,IPointerUpHandler
                 return;
             }
 
-            // Если кнопку отпустили до удержания и это был первый клик, отменяем удержание
             CancelInvoke("HoldClick");
-            ResetClickCount();
+            isAttackDoubleClick = false;
         }
     }
 
     private void SingleClick()
     {
-        if (playerControler.attackButton.enabled && clickCount == 1)
+        if (isClickedOnce && !holdTriggered)
         {
-            playerControler.animator.Play("Baidon_Attack_Deer");
-            ResetClickCount();
+            onSingleClick?.Invoke();
+            isAttacClick = true;
+            ResetClickState();
         }
     }
 
     private void HoldClick()
     {
-        if (playerControler.attackButton.enabled && clickCount == 1)
+        if (isClickedOnce)
         {
             isHeld = true;
-            playerControler.animator.Play("Baiden_Attack_Holdd");
-            ResetClickCount();
+            holdTriggered = true;
+            onHoldClick?.Invoke();
+            isAttacHold = true;
+            ResetClickState();
         }
     }
 
     private void OnDoubleClick()
     {
-        if (playerControler.attackButton.enabled)
-        {
-            playerControler.animator.Play("Baiden_Attack_Jump");
-        }
+        onDoubleClick?.Invoke();
+        isAttackDoubleClick = true;
     }
 
-    private void ResetClickCount()
+    private void ResetClickState()
     {
-        clickCount = 0;
+        isClickedOnce = false;
         isHeld = false;
-        CancelInvoke(); // Отменяем все запланированные вызовы
+        holdTriggered = false;
+        CancelInvoke("SingleClick");
+        CancelInvoke("HoldClick");
+        isAttacClick = false;
+        isAttacHold = false;
     }
 }
