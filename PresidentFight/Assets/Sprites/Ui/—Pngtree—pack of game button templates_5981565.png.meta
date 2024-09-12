@@ -1,0 +1,350 @@
+fileFormatVersion: 2
+guid: b1f3e7b0239553441868fc71daec07f3
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: iPhone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: "\u2014Pngtree\u2014pack of game button templates_5981565_5"
+      rect:
+        serializedVersion: 2
+        x: 135
+        y: 970
+        width: 405
+        height: 140
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0df25f540a7cb18459ed60786dfb44d4
+      internalID: 1501891319
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u2014Pngtree\u2014pack of game button templates_5981565_12"
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 793
+        width: 144
+        height: 141
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 02e61b49852a6834cb3114df4b5bbcf3
+      internalID: -922454944
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u2014Pngtree\u2014pack of game button templates_5981565_15"
+      rect:
+        serializedVersion: 2
+        x: 595
+        y: 796
+        width: 141
+        height: 140
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d15b5947c6840fa44827c7e809146dd1
+      internalID: -344938367
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u2014Pngtree\u2014pack of game button templates_5981565_21"
+      rect:
+        serializedVersion: 2
+        x: 296
+        y: 615
+        width: 139
+        height: 140
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 82d261571446b714da37476bd9acf688
+      internalID: 1136635941
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u2014Pngtree\u2014pack of game button templates_5981565_33"
+      rect:
+        serializedVersion: 2
+        x: 146
+        y: 616
+        width: 140
+        height: 139
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cf36d588d2adce34580b699c4d34a0bb
+      internalID: 748908444
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u2014Pngtree\u2014pack of game button templates_5981565_0"
+      rect:
+        serializedVersion: 2
+        x: 300
+        y: 81
+        width: 573
+        height: 146
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 53037fbbe2e775e42aece8a8f049d84f
+      internalID: 147146866
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      "\u2014Pngtree\u2014pack of game button templates_5981565_0": 147146866
+      "\u2014Pngtree\u2014pack of game button templates_5981565_1": 1305930696
+      "\u2014Pngtree\u2014pack of game button templates_5981565_10": 10742873
+      "\u2014Pngtree\u2014pack of game button templates_5981565_11": 72446808
+      "\u2014Pngtree\u2014pack of game button templates_5981565_12": -922454944
+      "\u2014Pngtree\u2014pack of game button templates_5981565_13": -310012241
+      "\u2014Pngtree\u2014pack of game button templates_5981565_14": -1771619612
+      "\u2014Pngtree\u2014pack of game button templates_5981565_15": -344938367
+      "\u2014Pngtree\u2014pack of game button templates_5981565_16": -1733807256
+      "\u2014Pngtree\u2014pack of game button templates_5981565_17": 1904897244
+      "\u2014Pngtree\u2014pack of game button templates_5981565_18": -1387965066
+      "\u2014Pngtree\u2014pack of game button templates_5981565_19": 1701147970
+      "\u2014Pngtree\u2014pack of game button templates_5981565_2": -669382234
+      "\u2014Pngtree\u2014pack of game button templates_5981565_20": -1018717219
+      "\u2014Pngtree\u2014pack of game button templates_5981565_21": 1136635941
+      "\u2014Pngtree\u2014pack of game button templates_5981565_22": 375690855
+      "\u2014Pngtree\u2014pack of game button templates_5981565_23": 1523650747
+      "\u2014Pngtree\u2014pack of game button templates_5981565_24": 1165176739
+      "\u2014Pngtree\u2014pack of game button templates_5981565_25": 933187448
+      "\u2014Pngtree\u2014pack of game button templates_5981565_26": -531878551
+      "\u2014Pngtree\u2014pack of game button templates_5981565_27": 1592276422
+      "\u2014Pngtree\u2014pack of game button templates_5981565_28": 1923643945
+      "\u2014Pngtree\u2014pack of game button templates_5981565_29": -1587725346
+      "\u2014Pngtree\u2014pack of game button templates_5981565_3": -263021330
+      "\u2014Pngtree\u2014pack of game button templates_5981565_30": 1732564506
+      "\u2014Pngtree\u2014pack of game button templates_5981565_31": 1816548903
+      "\u2014Pngtree\u2014pack of game button templates_5981565_32": -1499582045
+      "\u2014Pngtree\u2014pack of game button templates_5981565_33": 748908444
+      "\u2014Pngtree\u2014pack of game button templates_5981565_34": -1247810365
+      "\u2014Pngtree\u2014pack of game button templates_5981565_35": -880863276
+      "\u2014Pngtree\u2014pack of game button templates_5981565_36": -1125763858
+      "\u2014Pngtree\u2014pack of game button templates_5981565_37": -1925067222
+      "\u2014Pngtree\u2014pack of game button templates_5981565_38": 1310007438
+      "\u2014Pngtree\u2014pack of game button templates_5981565_39": 1419587588
+      "\u2014Pngtree\u2014pack of game button templates_5981565_4": 1767026259
+      "\u2014Pngtree\u2014pack of game button templates_5981565_40": 1119282062
+      "\u2014Pngtree\u2014pack of game button templates_5981565_41": -1921302078
+      "\u2014Pngtree\u2014pack of game button templates_5981565_42": 1757277713
+      "\u2014Pngtree\u2014pack of game button templates_5981565_43": 1109149094
+      "\u2014Pngtree\u2014pack of game button templates_5981565_44": 2145850
+      "\u2014Pngtree\u2014pack of game button templates_5981565_45": -1435629036
+      "\u2014Pngtree\u2014pack of game button templates_5981565_46": 1026542151
+      "\u2014Pngtree\u2014pack of game button templates_5981565_47": 793172893
+      "\u2014Pngtree\u2014pack of game button templates_5981565_48": -1657532338
+      "\u2014Pngtree\u2014pack of game button templates_5981565_49": 342854971
+      "\u2014Pngtree\u2014pack of game button templates_5981565_5": 1501891319
+      "\u2014Pngtree\u2014pack of game button templates_5981565_50": -620321587
+      "\u2014Pngtree\u2014pack of game button templates_5981565_51": 395476584
+      "\u2014Pngtree\u2014pack of game button templates_5981565_52": -2126400862
+      "\u2014Pngtree\u2014pack of game button templates_5981565_53": -1507267499
+      "\u2014Pngtree\u2014pack of game button templates_5981565_54": -1933478078
+      "\u2014Pngtree\u2014pack of game button templates_5981565_55": -584396464
+      "\u2014Pngtree\u2014pack of game button templates_5981565_56": -292686116
+      "\u2014Pngtree\u2014pack of game button templates_5981565_57": 541087815
+      "\u2014Pngtree\u2014pack of game button templates_5981565_58": -2112362002
+      "\u2014Pngtree\u2014pack of game button templates_5981565_59": -685145890
+      "\u2014Pngtree\u2014pack of game button templates_5981565_6": 1595207093
+      "\u2014Pngtree\u2014pack of game button templates_5981565_60": -1259877444
+      "\u2014Pngtree\u2014pack of game button templates_5981565_61": -1568114130
+      "\u2014Pngtree\u2014pack of game button templates_5981565_62": 1843946456
+      "\u2014Pngtree\u2014pack of game button templates_5981565_63": 1267727090
+      "\u2014Pngtree\u2014pack of game button templates_5981565_64": 680209448
+      "\u2014Pngtree\u2014pack of game button templates_5981565_65": -1326539948
+      "\u2014Pngtree\u2014pack of game button templates_5981565_66": 743692955
+      "\u2014Pngtree\u2014pack of game button templates_5981565_67": 1873183736
+      "\u2014Pngtree\u2014pack of game button templates_5981565_68": 692653660
+      "\u2014Pngtree\u2014pack of game button templates_5981565_69": 1515424241
+      "\u2014Pngtree\u2014pack of game button templates_5981565_7": 488423573
+      "\u2014Pngtree\u2014pack of game button templates_5981565_70": 1402331145
+      "\u2014Pngtree\u2014pack of game button templates_5981565_8": 1740347118
+      "\u2014Pngtree\u2014pack of game button templates_5981565_9": 1407069059
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

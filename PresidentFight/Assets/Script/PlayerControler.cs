@@ -27,6 +27,7 @@ public class PlayerControler : MonoBehaviour
     private float staminaRegenTimer;
     public bool canTakeDamage = true;
     public bool isBlocking  = false;
+    public bool isDoAnimation = false;
     void Start()
     {
         currentHealth = maxHealth;
@@ -93,9 +94,9 @@ public class PlayerControler : MonoBehaviour
     void UpdateButtonStates()
     {
         bool hasStamina = currentStamina > 0;
-        attackButton.enabled = hasStamina;
-        evadeButton.enabled = hasStamina;
-        blockButton.enabled = hasStamina && !isBlocking;
+        attackButton.enabled = hasStamina && !isDoAnimation;
+        evadeButton.enabled = hasStamina && !isDoAnimation;
+        blockButton.enabled = hasStamina && !isDoAnimation && !isBlocking;
     }
 
     void DisableAllActions()
@@ -103,6 +104,7 @@ public class PlayerControler : MonoBehaviour
         attackButton.enabled = false;
         evadeButton.enabled = false;
         blockButton.enabled = false;
+        isDoAnimation = true;
     }
 
     public void IsDoingSomeOfAnimation(string animationName)
@@ -113,6 +115,7 @@ public class PlayerControler : MonoBehaviour
         {
             UpdateButtonStates();
             isBlocking  = false;
+            isDoAnimation = false;
         }
     }
 

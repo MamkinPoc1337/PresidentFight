@@ -162,6 +162,7 @@ public class EnemyController : MonoBehaviour
                 if(atacButton.isAttacHold)
                 {
                     canTakeDamage = true;
+                    animator.SetTrigger("animationIsDone");
                 }
                 else
                 {

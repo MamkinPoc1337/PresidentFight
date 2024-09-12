@@ -12,7 +12,7 @@ public class AtacButton : MonoBehaviour,IPointerDownHandler,IPointerUpHandler
     public UnityEngine.Events.UnityEvent onDoubleClick;
     public UnityEngine.Events.UnityEvent onHoldClick;
 
-    private float doubleClickThreshold = 0.5f; // Время для определения двойного клика
+    private float doubleClickThreshold = 0.3f; // Время для определения двойного клика
     private float holdThreshold = 0.25f; // Время для определения удержания
     private float lastClickTime = 0f;
     private bool isHeld = false;
@@ -22,6 +22,10 @@ public class AtacButton : MonoBehaviour,IPointerDownHandler,IPointerUpHandler
     public bool isAttackDoubleClick = false;
     public bool isAttacHold = false;
 
+    public void Update()
+    {
+        ResetPlayerState();
+    }
     public void OnPointerDown(PointerEventData eventData)
     {
         if (playerControler != null && playerControler.attackButton.enabled)
@@ -55,9 +59,7 @@ public class AtacButton : MonoBehaviour,IPointerDownHandler,IPointerUpHandler
                 isHeld = false;
                 return;
             }
-
             CancelInvoke("HoldClick");
-            isAttackDoubleClick = false;
         }
     }
 
@@ -96,7 +98,15 @@ public class AtacButton : MonoBehaviour,IPointerDownHandler,IPointerUpHandler
         holdTriggered = false;
         CancelInvoke("SingleClick");
         CancelInvoke("HoldClick");
-        isAttacClick = false;
-        isAttacHold = false;
+
+    }
+    private void ResetPlayerState()
+    {
+        if(playerControler.isDoAnimation == false)
+        {
+            isAttacClick = false;
+            isAttacHold = false;
+            isAttackDoubleClick = false;
+        }
     }
 }
