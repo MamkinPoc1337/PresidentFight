@@ -31,6 +31,7 @@ public class EnemyController : MonoBehaviour
     private bool canBlock = true;
     private bool canEvade = true;
     private bool isBlocking = false;
+    public bool isAttack = false;
     private bool canTakeDamage = true;
 
 
@@ -87,7 +88,6 @@ public class EnemyController : MonoBehaviour
             {
                 ChoseWhatToDo();
                 atackTimer = atackCooldown;
-                animator.SetBool("attackIsDone", false);
             }
         }
     }
@@ -105,6 +105,7 @@ public class EnemyController : MonoBehaviour
         if (canAtack)
         {
             int choseAtac = Random.Range(0,3);
+            isAttack = true;
             switch(choseAtac)
             {
                 case 0:
@@ -209,6 +210,7 @@ public class EnemyController : MonoBehaviour
         if(eventName == "AtackEnd")
         {
             animator.SetTrigger("animationIsDone");
+            isAttack = false;
         }
     }
 
