@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.IMGUI.Controls;
 using UnityEngine;
 
 public class AttackPriority : MonoBehaviour
 {
     public AtacButton atacButton;
     public EnemyController enemyController;
+    private bool playerStartedAttack = false;
+    private bool enemyStartedAttack = false;
     public float enemyAttackStartTimer = 0;
     public float playerAttackStartTimer = 0;
     
@@ -16,19 +19,37 @@ public class AttackPriority : MonoBehaviour
 
     public void CountingAttackTime()
     {
-        if(atacButton.isAttacClick == true || atacButton.isAttacHold == true || atacButton.isAttackDoubleClick == true)
+        if((atacButton.isAttacClick || atacButton.isAttacHold || atacButton.isAttackDoubleClick) && !playerStartedAttack)
         {
-            playerAttackStartTimer += Time.deltaTime;
+            playerStartedAttack = true;
+            playerAttackStartTimer = Time.time;
+            Debug.Log("Player started attack at " + playerAttackStartTimer);
         }
-        if(enemyController.isAttack == true)
+        if(enemyController.isAttack && !enemyStartedAttack)
         {
-            enemyAttackStartTimer += Time.deltaTime;
+            enemyStartedAttack = true;
+            enemyAttackStartTimer = Time.time;
+            Debug.Log("Enemy started attack at " + enemyAttackStartTimer);
         }
-        if(playerAttackStartTimer < enemyAttackStartTimer)
+        if(playerStartedAttack && enemyStartedAttack)
         {
-            Debug.Log("Enemy Start first");
+            if (playerAttackStartTimer < enemyAttackStartTimer)
+            {
+                Debug.Log("Player attacked first");
+            }
+            else
+            {
+                Debug.Log("Enemy attacked first");
+            }
+            ResetTimers();
         }
-        else
-            Debug.Log("Player Sart First");
+    }
+
+    private void ResetTimers()
+    {
+        playerStartedAttack = false;
+        enemyStartedAttack = false;
+        playerAttackStartTimer = 0;
+        enemyAttackStartTimer = 0;
     }
 }

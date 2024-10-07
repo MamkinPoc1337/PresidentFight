@@ -23,7 +23,7 @@ public class EnemyController : MonoBehaviour
     public float staminaRegenCooldown = 2f;
     private float staminaRegenTimer;
 
-    public float blockChance = 30f;
+    public float blockChance = 0.20f;
     public float evadeChance = 20f;
     private float blockDuration;
 
@@ -32,6 +32,8 @@ public class EnemyController : MonoBehaviour
     private bool canEvade = true;
     private bool isBlocking = false;
     public bool isAttack = false;
+    public bool isAttacHold = false;
+    public bool isAttacDoubleClick = false;
     private bool canTakeDamage = true;
 
 
@@ -94,8 +96,7 @@ public class EnemyController : MonoBehaviour
 
     private void ChoseWhatToDo()
     {
-        int blockOrAttack = Random.Range(0,2);
-        if(blockOrAttack == 0)
+        if(Random.Range(0,100) <= blockChance)
             Block();
         else    
             Atac();
@@ -113,9 +114,11 @@ public class EnemyController : MonoBehaviour
                     break;
                 case 1:
                     animator.Play("Tramp_Atak_2Clik");
+                    isAttacDoubleClick = true;
                     break;
                 case 2:
                     animator.Play("Trump_Atak_hold");
+                    isAttacHold = true;
                     break;
             }
         }
@@ -131,11 +134,15 @@ public class EnemyController : MonoBehaviour
     {
         if (currentStamina < maxStamina)
         {
-            if (staminaRegenTimer > 0f)
+            if (isBlocking || isAttack)
             {
                 staminaRegenTimer -= Time.deltaTime;
             }
             else
+            {
+                staminaRegenTimer -= Time.deltaTime * 2; 
+            }
+            if (staminaRegenTimer <=0)
             {
                 currentStamina ++;
                 staminaRegenTimer = staminaRegenCooldown;
@@ -211,6 +218,8 @@ public class EnemyController : MonoBehaviour
         {
             animator.SetTrigger("animationIsDone");
             isAttack = false;
+            isAttacHold = false;
+            isAttacDoubleClick = false;
         }
     }
 

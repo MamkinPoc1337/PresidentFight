@@ -6,7 +6,12 @@ using UnityEngine.EventSystems;
 public class BlockButton : MonoBehaviour,IPointerDownHandler,IPointerUpHandler
 {
     public PlayerControler playerControler;
+    public EnemyController enemyController;
 
+    public void Update()
+    {
+        HoldAttackChecker();
+    }
     public void OnPointerDown(PointerEventData eventData)
     {
         if(playerControler.blockButton.enabled)
@@ -20,6 +25,15 @@ public class BlockButton : MonoBehaviour,IPointerDownHandler,IPointerUpHandler
     public void OnPointerUp(PointerEventData eventData)
     {
         if(playerControler.isBlocking)
+        {
+            playerControler.animator.Play("Baiden_Block_End");
+            playerControler.canTakeDamage = true;
+            playerControler.isBlocking = false;
+        }
+    }
+    public void HoldAttackChecker()
+    {
+        if(enemyController.isAttacHold && playerControler.isBlocking)
         {
             playerControler.animator.Play("Baiden_Block_End");
             playerControler.canTakeDamage = true;

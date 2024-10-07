@@ -49,8 +49,6 @@ public class PlayerControler : MonoBehaviour
         {
             DisableAllActions();
         }
-
-        //UpdateAnimClipTimes();
     }
 
     public void Atac()
@@ -60,7 +58,7 @@ public class PlayerControler : MonoBehaviour
     }
     public void Evade(float isEvading)
     {
-        if(evadeButton.enabled && isEvading == 1)
+        if(evadeButton.enabled && isEvading == 1 && enemyController.isAttacDoubleClick == false)
             canTakeDamage = false;
         else
             canTakeDamage = true;
@@ -69,7 +67,10 @@ public class PlayerControler : MonoBehaviour
     public void TakeDamage(int damage)
     {
         if (canTakeDamage)
+        {
             currentHealth -= damage;
+            animator.SetTrigger("takeDamage");
+        }
         else
             currentStamina --;
         if (currentHealth <= 0)
@@ -79,11 +80,15 @@ public class PlayerControler : MonoBehaviour
     {
         if (currentStamina < maxStamina)
         {
-            if (staminaRegenTimer > 0f)
+            if (isDoAnimation)
             {
                 staminaRegenTimer -= Time.deltaTime;
             }
             else
+            {
+                staminaRegenTimer -= Time.deltaTime * 2; 
+            }
+            if(staminaRegenTimer <= 0f)
             {
                 currentStamina++;
                 staminaRegenTimer = staminaRegenTime;
@@ -124,14 +129,4 @@ public class PlayerControler : MonoBehaviour
         gameOverScreen.Setup("Enemy");
         Destroy(gameObject);
     }
-
-    // public void UpdateAnimClipTimes()
-    // {
-    //     AnimatorClipInfo[ ] animationClip = animator.GetCurrentAnimatorClipInfo(0);
-    //     if(animationClip.Length > 0)
-    //     {
-    //         int currentFrame = (int) (animationClip[0].weight * (animationClip [0].clip.length * animationClip[0].clip.frameRate));
-    //         Debug.Log("CurrentFrame " + currentFrame);
-    //     }
-    // }
 }
