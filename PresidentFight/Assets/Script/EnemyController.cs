@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class EnemyController : MonoBehaviour
@@ -34,6 +35,7 @@ public class EnemyController : MonoBehaviour
     public bool isAttack = false;
     public bool isAttacHold = false;
     public bool isAttacDoubleClick = false;
+    public bool isDie = false;
     private bool canTakeDamage = true;
 
 
@@ -96,7 +98,7 @@ public class EnemyController : MonoBehaviour
 
     private void ChoseWhatToDo()
     {
-        if(Random.Range(0,100) <= blockChance)
+        if(Random.Range(0,100) <= blockChance && canBlock)
             Block();
         else    
             Atac();
@@ -170,7 +172,7 @@ public class EnemyController : MonoBehaviour
                 if(atacButton.isAttacHold)
                 {
                     canTakeDamage = true;
-                    animator.SetTrigger("animationIsDone");
+                    animator.Play("Trump_Blok_End");
                 }
                 else
                 {
@@ -179,7 +181,7 @@ public class EnemyController : MonoBehaviour
             }
             else
             {
-                animator.SetTrigger("animationIsDone");
+                animator.Play("Trump_Blok_End");
                 isBlocking = false;
                 canTakeDamage = true;
             }
@@ -194,9 +196,9 @@ public class EnemyController : MonoBehaviour
     }
     private void HandleCombatAvailability()
     {
-        canAtack = currentStamina > 0;
-        canBlock = currentStamina > 0;
-        canEvade = currentStamina > 0;
+        canAtack = currentStamina > 0 && !isDie;
+        canBlock = currentStamina > 0 && !isDie;
+        canEvade = currentStamina > 0 && !isDie;
     }
     private void DisableCombat()
     {
@@ -207,9 +209,12 @@ public class EnemyController : MonoBehaviour
 
     private void EnableCombat()
     {
-        canAtack = true;
-        canBlock = true;
-        canEvade = true;
+        if(!isDie)
+        {
+            canAtack = true;
+            canBlock = true;
+            canEvade = true;
+        }
     }
 
     private void AnimatorEvents(string eventName)
@@ -225,7 +230,23 @@ public class EnemyController : MonoBehaviour
 
     void Die()
     {
+        isDie = true;
+        isBlocking = false;
+        DisableCombat();
+        playerControler.Win();
+        animator.Play("Tramp_loosing");
+    }
+
+    public void Win()
+    {
+        isDie = true;
+        isBlocking = false;
+        DisableCombat();
+        animator.Play("Tramp_Win");
+    }
+
+    public void GameOver()
+    {
         gameOverScreen.Setup("Player");
-        Destroy(gameObject);
     }
 }

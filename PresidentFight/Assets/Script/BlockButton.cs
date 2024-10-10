@@ -16,7 +16,7 @@ public class BlockButton : MonoBehaviour,IPointerDownHandler,IPointerUpHandler
     {
         if(playerControler.blockButton.enabled)
         {
-            playerControler.animator.Play("Baiden_Block_Start");
+            playerControler.animator.SetBool("IsBlock",true);
             playerControler.canTakeDamage = false;
             playerControler.isBlocking  = true;
         }
@@ -26,7 +26,7 @@ public class BlockButton : MonoBehaviour,IPointerDownHandler,IPointerUpHandler
     {
         if(playerControler.isBlocking)
         {
-            playerControler.animator.Play("Baiden_Block_End");
+            playerControler.animator.SetBool("IsBlock",false);
             playerControler.canTakeDamage = true;
             playerControler.isBlocking = false;
         }
@@ -35,7 +35,7 @@ public class BlockButton : MonoBehaviour,IPointerDownHandler,IPointerUpHandler
     {
         if(enemyController.isAttacHold && playerControler.isBlocking)
         {
-            playerControler.animator.Play("Baiden_Block_End");
+            playerControler.animator.SetBool("IsBlock",false);
             playerControler.canTakeDamage = true;
             playerControler.isBlocking = false;
         }

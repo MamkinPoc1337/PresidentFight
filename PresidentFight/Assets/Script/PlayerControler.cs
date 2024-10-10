@@ -126,7 +126,18 @@ public class PlayerControler : MonoBehaviour
 
     void Die()
     {
+        DisableAllActions();
+        enemyController.Win();
+        animator.SetTrigger("Die");
+    }
+
+    public void Win()
+    {
+        animator.SetTrigger("Win");
+    }
+
+    public void GameOver()
+    {
         gameOverScreen.Setup("Enemy");
-        Destroy(gameObject);
     }
 }
